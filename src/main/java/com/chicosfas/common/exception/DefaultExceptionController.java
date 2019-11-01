@@ -64,8 +64,8 @@ public class DefaultExceptionController {
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public Map<String, Object> methodArgumentTypeMismatchException(Exception e, WebRequest webRequest) {
 		log.error("MethodArgumentTypeMismatchException=", e);
-		return buildException(webRequest, String.valueOf(HttpStatus.BAD_REQUEST.value()),
-				HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
+		return buildException(webRequest, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
+				e.getMessage());
 	}
 
 	@ExceptionHandler({ ConflictException.class })
@@ -73,8 +73,8 @@ public class DefaultExceptionController {
 	@ResponseStatus(value = HttpStatus.CONFLICT)
 	public Map<String, Object> conflictException(Exception e, WebRequest webRequest) {
 		log.error("ConflictException=", e.getCause());
-		return buildException(webRequest, String.valueOf(HttpStatus.CONFLICT.value()),
-				HttpStatus.CONFLICT.getReasonPhrase(), "Request conflicts with the current state of the server");
+		return buildException(webRequest, HttpStatus.CONFLICT.value(), HttpStatus.CONFLICT.getReasonPhrase(),
+				"Request conflicts with the current state of the server");
 	}
 
 	@ExceptionHandler({ InternalServerException.class })
@@ -82,7 +82,7 @@ public class DefaultExceptionController {
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public Map<String, Object> internalServerException(Exception e, WebRequest webRequest) {
 		log.error("InternalServerException=", e.getCause());
-		return buildException(webRequest, String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+		return buildException(webRequest, HttpStatus.INTERNAL_SERVER_ERROR.value(),
 				HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e.getCause().getMessage());
 	}
 
@@ -92,7 +92,7 @@ public class DefaultExceptionController {
 			HttpServletResponse response) {
 		log.error("StatusCodeException={}", e.getMessage());
 		response.setStatus(e.getStatus().value());
-		return buildException(webRequest, String.valueOf(e.getStatus().value()), e.getCode(), e.getMessage());
+		return buildException(webRequest, e.getStatus().value(), e.getCode(), e.getMessage());
 	}
 
 	@ExceptionHandler({ SQLException.class })
@@ -100,7 +100,7 @@ public class DefaultExceptionController {
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public Map<String, Object> sqlException(Exception e, WebRequest webRequest) {
 		log.error("SQLException=", e.getCause());
-		return buildException(webRequest, String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+		return buildException(webRequest, HttpStatus.INTERNAL_SERVER_ERROR.value(),
 				HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e.getCause().getMessage());
 	}
 
@@ -109,11 +109,11 @@ public class DefaultExceptionController {
 	@ResponseStatus(value = HttpStatus.REQUEST_TIMEOUT)
 	public Map<String, Object> timeoutException(Throwable t, WebRequest webRequest) {
 		log.error("TimeoutException={}", t.getMessage());
-		return buildException(webRequest, String.valueOf(HttpStatus.REQUEST_TIMEOUT.value()),
+		return buildException(webRequest, HttpStatus.REQUEST_TIMEOUT.value(),
 				HttpStatus.REQUEST_TIMEOUT.getReasonPhrase(), HttpStatus.REQUEST_TIMEOUT.getReasonPhrase());
 	}
 
-	public Map<String, Object> buildException(WebRequest webRequest, String status, String error, String message) {
+	public Map<String, Object> buildException(WebRequest webRequest, Integer status, String error, String message) {
 		Map<String, Object> exception = new HashMap<>();
 		exception.put(STATUS, status);
 		exception.put(ERROR, error);

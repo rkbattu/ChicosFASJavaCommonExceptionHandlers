@@ -49,7 +49,7 @@ public class DefaultExceptionControllerTest {
 				new ServletWebRequest(new MockHttpServletRequest()));
 
 		// Assertions.
-		assertEquals("409", result.get(DefaultExceptionController.STATUS));
+		assertEquals(409, result.get(DefaultExceptionController.STATUS));
 		assertEquals("Conflict", result.get(DefaultExceptionController.ERROR));
 		assertEquals("Request conflicts with the current state of the server",
 				result.get(DefaultExceptionController.MESSAGE));
@@ -72,7 +72,7 @@ public class DefaultExceptionControllerTest {
 				new ServletWebRequest(new MockHttpServletRequest()));
 
 		// Assertions.
-		assertEquals("500", result.get(DefaultExceptionController.STATUS));
+		assertEquals(500, result.get(DefaultExceptionController.STATUS));
 		assertEquals("Internal Server Error", result.get(DefaultExceptionController.ERROR));
 		assertEquals("FAILURE", result.get(DefaultExceptionController.MESSAGE));
 		assertEquals("FOOBAR", result.get(DefaultExceptionController.TRACE_ID));
@@ -93,7 +93,7 @@ public class DefaultExceptionControllerTest {
 				new ServletWebRequest(new MockHttpServletRequest()));
 
 		// Assertions.
-		assertEquals("400", result.get(DefaultExceptionController.STATUS));
+		assertEquals(400, result.get(DefaultExceptionController.STATUS));
 		assertEquals("Bad Request", result.get(DefaultExceptionController.ERROR));
 		assertEquals("Failed to convert value of type 'null'", result.get(DefaultExceptionController.MESSAGE));
 		assertEquals("FOOBAR", result.get(DefaultExceptionController.TRACE_ID));
@@ -114,7 +114,7 @@ public class DefaultExceptionControllerTest {
 				new ServletWebRequest(new MockHttpServletRequest()), new MockHttpServletResponse());
 
 		// Assertions.
-		assertEquals("401", result.get(DefaultExceptionController.STATUS));
+		assertEquals(401, result.get(DefaultExceptionController.STATUS));
 		assertEquals("FOO", result.get(DefaultExceptionController.ERROR));
 		assertEquals("BAR", result.get(DefaultExceptionController.MESSAGE));
 		assertEquals("FOOBAR", result.get(DefaultExceptionController.TRACE_ID));
@@ -135,7 +135,7 @@ public class DefaultExceptionControllerTest {
 		Map<String, Object> result = controller.sqlException(e, new ServletWebRequest(new MockHttpServletRequest()));
 
 		// Assertions.
-		assertEquals("500", result.get(DefaultExceptionController.STATUS));
+		assertEquals(500, result.get(DefaultExceptionController.STATUS));
 		assertEquals("Internal Server Error", result.get(DefaultExceptionController.ERROR));
 		assertEquals("FAILURE", result.get(DefaultExceptionController.MESSAGE));
 		assertEquals("FOOBAR", result.get(DefaultExceptionController.TRACE_ID));
@@ -156,7 +156,7 @@ public class DefaultExceptionControllerTest {
 				new ServletWebRequest(new MockHttpServletRequest()));
 
 		// Assertions.
-		assertEquals("408", result.get(DefaultExceptionController.STATUS));
+		assertEquals(408, result.get(DefaultExceptionController.STATUS));
 		assertEquals("Request Timeout", result.get(DefaultExceptionController.ERROR));
 		assertEquals("Request Timeout", result.get(DefaultExceptionController.MESSAGE));
 		assertEquals("FOOBAR", result.get(DefaultExceptionController.TRACE_ID));
