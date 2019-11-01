@@ -22,7 +22,6 @@ package com.chicosfas.common.exception;
 
 import static org.junit.Assert.assertEquals;
 
-import java.nio.file.AccessDeniedException;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
@@ -34,27 +33,6 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 public class DefaultExceptionControllerTest {
-
-	@Test
-	public void testAccessDeniedException() {
-		// Class under test.
-		DefaultExceptionController controller = new DefaultExceptionController();
-
-		// Setup test.
-		controller.tracer = new MockTracer();
-
-		AccessDeniedException e = new AccessDeniedException("FOO");
-
-		// Execute test.
-		Map<String, Object> result = controller.unauthorizedAccess(e,
-				new ServletWebRequest(new MockHttpServletRequest()));
-
-		// Assertions.
-		assertEquals("401", result.get(DefaultExceptionController.STATUS));
-		assertEquals("Unauthorized", result.get(DefaultExceptionController.ERROR));
-		assertEquals("FOO", result.get(DefaultExceptionController.MESSAGE));
-		assertEquals("FOOBAR", result.get(DefaultExceptionController.TRACE_ID));
-	}
 
 	@Test
 	public void testConflictException() {

@@ -20,7 +20,6 @@
 
 package com.chicosfas.common.exception;
 
-import java.nio.file.AccessDeniedException;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
@@ -67,15 +66,6 @@ public class DefaultExceptionController {
 		log.error("MethodArgumentTypeMismatchException=", e);
 		return buildException(webRequest, String.valueOf(HttpStatus.BAD_REQUEST.value()),
 				HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
-	}
-
-	@ExceptionHandler({ AccessDeniedException.class })
-	@ResponseBody
-	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
-	public Map<String, Object> unauthorizedAccess(Exception e, WebRequest webRequest) {
-		log.error("AccessDeniedException=", e);
-		return buildException(webRequest, String.valueOf(HttpStatus.UNAUTHORIZED.value()),
-				HttpStatus.UNAUTHORIZED.getReasonPhrase(), e.getMessage());
 	}
 
 	@ExceptionHandler({ ConflictException.class })
