@@ -22,7 +22,7 @@ Chico's FAS has recognized the need to extend and enhance the basic error messag
 		"error": "10000",
 		"message": "400 Bad Request",
 		"path": "/customers/occ/800000",
-    	"traceId": "de2a096dd1e30965",
+		"traceId": "de2a096dd1e30965",
 		"request": {
 			"profileId": "ABC",
 			"profile": {
@@ -30,7 +30,7 @@ Chico's FAS has recognized the need to extend and enhance the basic error messag
 			},
 			"siteId": "whbmotr"
 		}
-}
+	}
 ```
 
 **traceId** provides a GUID which can be found in log files and distributed tracing.  Tracing must be enabled for the web service.
