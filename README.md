@@ -30,7 +30,7 @@ Chico's FAS has recognized the need to extend and enhance the basic error messag
 			},
 			"siteId": "whbmotr"
 		}
-}
+	}
 ```
 
 **traceId** provides a GUID which can be found in log files and distributed tracing.  Tracing must be enabled for the web service.
